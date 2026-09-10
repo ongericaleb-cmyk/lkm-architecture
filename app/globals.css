@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  --lkm-navy: #182638;
+  --lkm-gold: #b79a63;
+  --lkm-cream: #f7f5f0;
+  --lkm-charcoal: #171717;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: white;
+  color: var(--lkm-charcoal);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--lkm-navy);
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: -0.025em;
+}
