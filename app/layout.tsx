@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./globals.css";
@@ -26,12 +27,9 @@ export const metadata: Metadata = {
     },
   ],
   creator: "LKM Architecture",
-  metadataBase: new URL(
-    "https://www.lkmarchitecture.com"
-  ),
+  metadataBase: new URL("https://www.lkmarchitecture.com"),
   openGraph: {
-    title:
-      "LKM Architecture | Architecture, Development & Design",
+    title: "LKM Architecture | Architecture, Development & Design",
     description:
       "Creating places with purpose, character and lasting value.",
     url: "https://www.lkmarchitecture.com",
@@ -41,8 +39,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "LKM Architecture | Architecture, Development & Design",
+    title: "LKM Architecture | Architecture, Development & Design",
     description:
       "Creating places with purpose, character and lasting value.",
   },
@@ -78,9 +75,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-
       <body>
-
         <Header />
 
         {children}
@@ -94,8 +89,20 @@ export default function RootLayout({
           }}
         />
 
-      </body>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-SERB3J9E6E"
+          strategy="afterInteractive"
+        />
 
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-SERB3J9E6E');
+          `}
+        </Script>
+      </body>
     </html>
   );
 }
