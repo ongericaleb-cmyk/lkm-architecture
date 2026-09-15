@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { projects } from "../../data/projects";
 
 type ProjectPageProps = {
@@ -13,19 +14,60 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: ProjectPageProps) {
+export async function generateMetadata({
+  params,
+}: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
   const project = projects.find((item) => item.slug === slug);
 
   if (!project) {
     return {
       title: "Project | LKM Architecture",
+      description:
+        "Explore architecture, development and design projects by LKM Architecture.",
     };
   }
 
+  const title = `${project.title} | ${project.location} | LKM Architecture`;
+
   return {
-    title: `${project.title} | LKM Architecture`,
+    title,
     description: project.description,
+
+    alternates: {
+      canonical: `https://www.lkmarchitecture.com/projects/${project.slug}`,
+    },
+
+    openGraph: {
+      title,
+      description: project.description,
+      url: `https://www.lkmarchitecture.com/projects/${project.slug}`,
+      siteName: "LKM Architecture",
+      type: "article",
+      locale: "en_KE",
+      images: [
+        {
+          url: `https://www.lkmarchitecture.com/projects/${project.slug}/01.jpg`,
+          width: 1600,
+          height: 900,
+          alt: `${project.title} — LKM Architecture`,
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: project.description,
+      images: [
+        `https://www.lkmarchitecture.com/projects/${project.slug}/01.jpg`,
+      ],
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+    },
   };
 }
 
@@ -58,14 +100,62 @@ export default async function ProjectPage({
     `/projects/${project.slug}/03.jpg`,
   ];
 
+  const projectUrl = `https://www.lkmarchitecture.com/projects/${project.slug}`;
+
+  const projectStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+
+    name: project.title,
+
+    description: project.description,
+
+    url: projectUrl,
+
+    image: [
+      `https://www.lkmarchitecture.com/projects/${project.slug}/01.jpg`,
+      `https://www.lkmarchitecture.com/projects/${project.slug}/02.jpg`,
+      `https://www.lkmarchitecture.com/projects/${project.slug}/03.jpg`,
+    ],
+
+    locationCreated: {
+      "@type": "Place",
+      name: project.location,
+    },
+
+    creator: {
+      "@type": "ProfessionalService",
+      name: "LKM Architecture",
+      url: "https://www.lkmarchitecture.com",
+    },
+
+    keywords: [
+      project.category,
+      project.location,
+      "Architecture",
+      "Architectural Design",
+      "LKM Architecture",
+    ],
+
+    about: project.services,
+  };
+
   return (
     <main className="bg-white text-[#171717]">
+
+      {/* PROJECT STRUCTURED DATA */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(projectStructuredData),
+        }}
+      />
 
       {/* HERO */}
       <section className="relative min-h-[78vh] overflow-hidden bg-[#111]">
         <Image
           src={images[0]}
-          alt={project.title}
+          alt={`${project.title} — LKM Architecture`}
           fill
           priority
           sizes="100vw"
@@ -98,7 +188,7 @@ export default async function ProjectPage({
       {/* INTRO */}
       <section className="border-b border-black/10">
         <div className="mx-auto grid max-w-[1500px] gap-12 px-6 py-20 md:px-10 md:py-28 lg:grid-cols-[1fr_1.6fr] lg:px-16">
-          
+
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-black/45">
               Overview
@@ -130,6 +220,7 @@ export default async function ProjectPage({
               <p className="text-[10px] uppercase tracking-[0.25em] text-black/40">
                 Location
               </p>
+
               <p className="mt-3 text-sm">
                 {project.location}
               </p>
@@ -139,6 +230,7 @@ export default async function ProjectPage({
               <p className="text-[10px] uppercase tracking-[0.25em] text-black/40">
                 Category
               </p>
+
               <p className="mt-3 text-sm">
                 {project.category}
               </p>
@@ -148,6 +240,7 @@ export default async function ProjectPage({
               <p className="text-[10px] uppercase tracking-[0.25em] text-black/40">
                 Status
               </p>
+
               <p className="mt-3 text-sm">
                 {project.status}
               </p>
@@ -162,7 +255,7 @@ export default async function ProjectPage({
         <div className="relative aspect-[16/9] overflow-hidden bg-[#f2f1ed]">
           <Image
             src={images[1]}
-            alt={`${project.title} — view two`}
+            alt={`${project.title} — architectural view two`}
             fill
             sizes="(max-width: 768px) 100vw, 95vw"
             className="object-cover"
@@ -194,7 +287,7 @@ export default async function ProjectPage({
         <div className="relative aspect-[16/9] overflow-hidden bg-[#f2f1ed]">
           <Image
             src={images[2]}
-            alt={`${project.title} — view three`}
+            alt={`${project.title} — architectural view three`}
             fill
             sizes="(max-width: 768px) 100vw, 95vw"
             className="object-cover"
