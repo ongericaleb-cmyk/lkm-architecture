@@ -52,19 +52,48 @@ export const metadata: Metadata = {
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+
   name: "LKM Architecture",
-  description:
-    "Architecture, development and design practice based in Kenya.",
+  alternateName: "LKM Architecture Ltd",
+
   url: "https://www.lkmarchitecture.com",
-  areaServed: "Kenya",
+
+  logo: "https://www.lkmarchitecture.com/brand/lkm-primary-transparent.png",
+
+  description:
+    "LKM Architecture is a Kenya-based architecture and design practice creating places with purpose, character and lasting value across residential, commercial, mixed-use, hospitality, healthcare and institutional projects.",
+
+  foundingDate: "2021",
+
+  email: "Lkmarchitecture.ke@gmail.com",
+
+  areaServed: {
+    "@type": "Country",
+    name: "Kenya",
+  },
+
+  sameAs: [
+    "https://www.instagram.com/lkmarchitecture_254/",
+    "https://www.facebook.com/p/lkmarchitecture_254/",
+    "https://x.com/lkmarchitecture",
+    "https://www.tiktok.com/@lkmarchitecture_254",
+    "https://www.youtube.com/@Lkmarchitecture_254",
+  ],
+
   serviceType: [
     "Architecture",
     "Interior Architecture",
+    "Interior Design",
     "Masterplanning",
+    "Residential Architecture",
+    "Commercial Architecture",
     "Development Advisory",
     "Design & Build",
     "Project Management",
-    "Feasibility & Strategy",
+    "Feasibility Studies",
+    "3D Architectural Visualization",
+    "Planning and Building Approvals",
+    "Site Supervision",
   ],
 };
 

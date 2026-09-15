@@ -11,27 +11,23 @@ const explore = [
 const social = [
   {
     label: "Instagram",
-    href: "https://www.instagram.com/lkmarchitecture/",
+    href: "https://www.instagram.com/lkmarchitecture_254/",
   },
   {
     label: "Facebook",
-    href: "https://www.facebook.com/LKMArchitecture/",
+    href: "https://www.facebook.com/p/lkmarchitecture_254/",
   },
   {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/",
-  },
-  {
-    label: "YouTube",
-    href: "https://www.youtube.com/",
+    label: "TikTok",
+    href: "https://www.tiktok.com/@lkmarchitecture_254",
   },
   {
     label: "X",
-    href: "https://x.com/LKMArchitecture",
+    href: "https://x.com/lkmarchitecture",
   },
   {
-    label: "Snapchat",
-    href: "https://www.snapchat.com/",
+    label: "YouTube",
+    href: "https://www.youtube.com/@Lkmarchitecture_254",
   },
 ];
 
@@ -114,10 +110,10 @@ export default function Footer() {
               </a>
 
               <a
-                href="mailto:info@lkmarchitecture.com"
+                href="mailto:Lkmarchitecture.ke@gmail.com"
                 className="text-sm text-white/65 transition hover:text-white"
               >
-                info@lkmarchitecture.com
+                Lkmarchitecture.ke@gmail.com
               </a>
 
               <div className="my-2 h-px w-full bg-white/10" />
